@@ -1,6 +1,7 @@
 package br.com.gildo.cordeiro.erp.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,6 +26,9 @@ public class Empresa implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(precision = 10, scale = 2)
+	private BigDecimal faturamento;
 	
 	@Column(name = "nome_fantasia", nullable = false, length = 80)
 	private String nomeFantasia;
@@ -131,5 +135,13 @@ public class Empresa implements Serializable {
 	@Override
 	public String toString() {
 		return "Empresa [id=" + id + "]";
+	}
+
+	public BigDecimal getFaturamento() {
+		return faturamento;
+	}
+
+	public void setFaturamento(BigDecimal faturamento) {
+		this.faturamento = faturamento;
 	}	
 }
