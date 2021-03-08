@@ -15,27 +15,67 @@
 	<f:metadata>
 		<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas()}"/>
 	</f:metadata>
-	
-	<h:form>
-		<p:dataTable value="#{gestaoEmpresasBean.listEmpresas}" var="empresa" emptyMessage="Nenhuma informaão" 
-			paginator="true" rows="10" paginatorPosition="bottom" sortBy="#{empresa.razaoSocial}">
-			<p:column headerText="Razão Social">
-				<h:outputText value="#{empresa.razaoSocial}" />
-			</p:column>	
+	<div class="card">
+		<h:form>
+			<p:growl id="messages" showDetail="true"/>
 			
-			<p:column headerText="Nome Fantasia">
-				<h:outputText value="#{empresa.nomeFantasia}" />
-			</p:column>	
-			
-			<p:column headerText="Tipo Empresa">
-				<h:outputText value="#{empresa.tipo}" />
-			</p:column>	
-			
-			<p:column headerText="Ramo Atividade">
-				<h:outputText value="#{empresa.ramoAtividade.descricao}" />
-			</p:column>	
-		</p:dataTable>
-	</h:form>
+				<p:toolbar>
+				<f:facet name="left">
+		            <p:toolbarGroup>
+		            	<p:inputText placeholder="Digite aqui um termo para pesquisa..." size="30"/>
+		            	<p:commandButton type="button" icon="pi pi-search" styleClass="ui-button-outlined ui-button-search p-mr-2"/>
+		                <p:spacer width="5" height="5"/>
+						
+		                <i class="pi pi-ellipsis-v"/>
+						
+						<p:spacer width="5" height="5"/>
+		                <p:commandButton type="button" icon="pi pi-plus" styleClass="ui-button-outlined ui-button-success p-mr-2" />
+		                <p:spacer width="5" height="5"/>
+		                <p:commandButton type="button" icon="pi pi-pencil" styleClass="ui-button-outlined ui-button-warning" />
+						<p:spacer width="5" height="5"/> 
+		                <p:commandButton type="button" title="Delete" icon="pi pi-trash" styleClass="ui-button-outlined ui-button-danger"/>
+		                <p:spacer width="5" height="5"/>
+		                
+		                <i class="pi pi-ellipsis-v"/>
+							
+						<p:spacer width="5" height="5"/>
+						<p:commandButton title="Exportar para o Excel" type="button" icon="pi pi-file-excel" styleClass="ui-button-outlined ui-button-secondary" />	                
+		                
+		            </p:toolbarGroup>
+				</f:facet>
+				
+				<f:facet name="right">
+		            <p:toolbarGroup>
+		                <p:menuButton value="Options">
+		                    <p:menuitem value="Save" update="messages" icon="pi pi-save"/>
+		                    <p:menuitem value="Update" update="messages" icon="pi pi-refresh"/>
+		                    <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
+		                    <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="pi pi-home"/>
+		                </p:menuButton>
+		            </p:toolbarGroup>
+				</f:facet>
+	        </p:toolbar>
+	        <p:spacer height="28"/>
+			<p:dataTable value="#{gestaoEmpresasBean.listEmpresas}" var="empresa" emptyMessage="Nenhuma informaão" 
+				paginator="true" rows="10" paginatorPosition="bottom" sortBy="#{empresa.razaoSocial}">
+				<p:column headerText="Razão Social">
+					<h:outputText value="#{empresa.razaoSocial}" />
+				</p:column>	
+				
+				<p:column headerText="Nome Fantasia">
+					<h:outputText value="#{empresa.nomeFantasia}" />
+				</p:column>	
+				
+				<p:column headerText="Tipo Empresa">
+					<h:outputText value="#{empresa.tipo}" />
+				</p:column>	
+				
+				<p:column headerText="Ramo Atividade">
+					<h:outputText value="#{empresa.ramoAtividade.descricao}" />
+				</p:column>	
+			</p:dataTable>
+		</h:form>
+	</div>
 </ui:define>
 
 </ui:composition>
